@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.frame {
+  background-color: #e4d9f6;
+  height: 100%;
+  padding: 7vw 0 7vw 0;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.footer {
+  background-color: #fad1e5;
+  text-align: center;
+  padding: 3vw;
+  font-size: 1.1rem;
+}
+
+.logo-align {
+  max-height: 100%;
+  height: calc(1.625rem + 4.5vw);
+  width: auto;
+}
+
+.footer-link {
+  text-decoration-style: dotted;
+  color: #870443;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: #198754;
+}
+
+.title-underline {
+  text-decoration: underline solid #ffc107;
+}
+
+.megaphone {
+  background-color: #ffc107;
+  margin-right: 10px;
+  width: calc(1.475rem + 2.1vw);
+  height: auto;
+}
+
+.module-link {
+  background-color: #0d6efd;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.module-link:hover {
+  background-color: rgb(42, 39, 39);
+}
+
+ol {
+  max-width: 750px;
+  justify-content: center;
+}
+
+ol li {
+  margin: 10px;
+  text-align: justify;
+}
+
+ol li::marker {
+  color: #db6d13;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.underline {
+  color: #360d6f;
+  font-weight: 400;
+}
+
+@media (min-width: 1200px) {
+  .megaphone {
+    width: 3rem;
+    height: auto;
+  }
+
+  .logo-align {
+    width: 5rem;
+    height: auto;
+  }
+  
+}
