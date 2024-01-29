@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -66,12 +67,43 @@ code {
   background-color: rgb(42, 39, 39);
 }
 
-ol {
+.emph {
+  color: #751ae3;
+  font-weight: 500;
+}
+
+button[id^='dataset-tabs'] {
+  color: #751ae3;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+ul.mb-3.nav.nav-tabs {
+  margin: auto;
+}
+
+button[id^='dataset-tabs'].nav-link:hover {
+  color: #057848;
+  border-color:rgb(21, 114, 55);
+}
+
+button[id^='dataset-tabs'].nav-link.active {
+  border: none;
+  background-color: #7b34ec;
+  color: white;
+}
+
+ul[role="tablist"] {
+  background-color: rgb(253, 214, 224);
+  border-color: black;
+}
+
+ol, ul {
   max-width: 750px;
   justify-content: center;
 }
 
-ol li {
+ol li, ul li {
   margin: 10px;
   text-align: justify;
 }
