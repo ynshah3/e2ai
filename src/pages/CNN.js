@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CNNDataset from "./cnn_dataset";
+import CNNModel from "./cnn_model";
 
 
 const CNN = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="container-sm" style={{maxWidth: 1000}}>
       <div className="frame" style={{backgroundColor: "#ffddc1", justifyContent: "center"}}>
@@ -19,6 +24,8 @@ const CNN = () => {
         </div>
         <hr style={{margin: "30px 20px"}} />
         <CNNDataset />
+        <hr style={{margin: "30px 20px"}} />
+        <CNNModel />
         <hr style={{margin: "30px 20px"}} />
         <h3 className="display-8" style={{marginTop: 30}}>References</h3>
         <div className="container-sm" style={{maxWidth: 750, textAlign: "justify", fontSize: "0.9rem"}}>

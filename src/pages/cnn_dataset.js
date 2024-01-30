@@ -4,26 +4,22 @@ import {Tab, Tabs, Form} from 'react-bootstrap';
 
 const CNNDataset = () => {
   const classes = [
-    ['Goldfish', 'goldfish'],
-    ['Bullet Train', 'bullet_train'],
-    ['Chihuahua', 'chihuahua'],
-    ['Lemon', 'lemon'],
-    ['Comic Book', 'comic_book'],
-    ['Lion', 'lion'],
-    ['Dinner Table', 'dinner_table'],
-    ['Pizza', 'pizza'],
-    ['School Bus', 'school_bus'],
+    ['Church', 'church'],
+    [' Dog', 'dog'],
+    ['Face', 'face'],
+    ['Fish', 'fish'],
+    ['Parachute', 'parachute'],
   ]
 
   const images = [...Array(100).keys()]
 
-  const [face_path, set_face_path] = useState("face_original")
+  const [isBlurred, setIsBlurred] = useState("")
 
   const handleChange = (e) => {
-    if (face_path === "face") {
-      set_face_path("face_original")
+    if (isBlurred === "") {
+      setIsBlurred("_blurred")
     } else {
-      set_face_path("face")
+      setIsBlurred("")
     }
   }
 
@@ -44,31 +40,24 @@ const CNNDataset = () => {
           <br /><br />
           Below are 100 out of the 500 images (representative) from every category:
         </div>
+        <Form.Check
+          type="switch"
+          id="blur-switch"
+          label={isBlurred === "" ? "Blur Faces" : "Un-Blur Faces"}
+          onClick={handleChange}
+          style={{textAlign: "left", fontSize: "1.3rem", color: "#751ae3", margin: "20px 0 0 0"}}
+        />
         <Tabs
           defaultActiveKey="face"
           id="dataset-tabs"
           className="mb-3"
           style={{alignContent: "center", marginTop: 30}}
         >
-          <Tab eventKey="face" title="Face" key={"tab-0"}>
-            <div>
-              <Form.Check
-                type="switch"
-                id="blur-switch"
-                label={face_path === "face_original" ? "Blur Faces" : "Un-Blur Faces"}
-                onClick={handleChange}
-                style={{textAlign: "left", margin: 20}}
-              />
-              {images.map((img, j) =>
-                <img src={"images/" + face_path + "/" + j + ".jpg"} className="img-fluid" alt={"Face image " + j} key={"Face-image-" + j} width="50" />
-              )}
-            </div>
-          </Tab>
           {classes.map((cls, i) => 
             <Tab eventKey={cls[1]} title={cls[0]} key={"tab-" + (i + 1)}>
               <div>
                 {images.map((img, j) =>
-                  <img src={"images/" + cls[1] + "/" + j + ".jpg"} className="img-fluid" alt={cls[0] + " image " + j} key={cls[0] + "-image-" + j} width="50" />
+                  <img src={"images/" + cls[1] + isBlurred + "/" + j + ".jpeg"} className="img-fluid" alt={cls[0] + " image " + j} key={cls[0] + "-image-" + j} width="50" />
                 )}
               </div>
             </Tab>
