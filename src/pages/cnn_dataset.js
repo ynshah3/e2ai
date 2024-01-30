@@ -25,7 +25,7 @@ const CNNDataset = () => {
 
   return (
     <div style={{marginBottom: 50}}>
-      <h2 className="display-6">Explore The Dataset</h2>
+      <h2 className="display-6">Explore The Dataset!</h2>
       <div className="container-sm" style={{marginTop: 50, maxWidth: 800}}>
         <figure class="text-center">
           <blockquote class="blockquote">
