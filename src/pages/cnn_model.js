@@ -23,9 +23,9 @@ const CNNModel = () => {
           <br /><br />
           <img src="arch.png" alt="model architecture" className="img-fluid" width="100%" />
           <br /><br />
-          Here, YuNet is an efficient millisecond-level face detector designed specifically for edge devices, with its authors claiming that it has the best accuracy-speed tradeoff [7].<br/><br/>
+          Here, YuNet is an efficient millisecond-level face detector designed specifically for edge devices, with its authors claiming that it has the best accuracy-speed tradeoff [9].<br/><br/>
           Number of learnable parameters in the AlexNet model: 61,100,840<br />
-          Number of parameters in the pre-trained YuNet model: 75, 856<br />
+          Number of parameters in the pre-trained YuNet model: 75,856<br />
         </div>
         <Tabs
           defaultActiveKey="convolution"

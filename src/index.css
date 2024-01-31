@@ -13,6 +13,14 @@ code {
     monospace;
 }
 
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(2);
+}
+
 .frame {
   background-color: #e4d9f6;
   height: 100%;

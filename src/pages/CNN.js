@@ -35,7 +35,9 @@ const CNN = () => {
           [4] U.S. Department of Education, Office of Educational Technology, <em>Artificial Intelligence and Future of Teaching and Learning: Insights and Recommendations</em>, Washington, DC, 2023.<br />
           [5] <a href="https://www.unesco.org/en/artificial-intelligence">https://www.unesco.org/en/artificial-intelligence</a><br />
           [6] Carlos Hinojosa, Miguel Marquez, Henry Arguello, Ehsan Adeli, Li Fei-Fei, and Juan Carlos Niebles. <em>PrivHAR: Recognizing Human Actions from Privacy-Preserving Lens</em>, pp. 314-332. Springer Nature Switzerland, 2022. ISBN 9783031197727. <a href="http://dx.doi.org/10.1007/978-3-031-19772-7_19">http://dx.doi.org/10.1007/978-3-031-19772-7_19</a>.<br />
-          [7] Wei Wu, Hanyang Peng, and Shiqi Yu. YuNet: A Tiny Millisecond-level Face Detector. <em>Machine Intelligence Research</em> 20, 656-665 (2023). <a href="https://doi.org/10.1007/s11633-023-1423-y">https://doi.org/10.1007/s11633-023-1423-y</a>.<br/>
+          [7] Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei, "ImageNet: A large-scale hierarchical image database," <em>2009 IEEE Conference on Computer Vision and Pattern Recognition</em>, Miami, FL, USA, 2009, pp. 248-255, doi: 10.1109/CVPR.2009.5206848.<br />
+          [8] Tero Karras, Samuli Laine, and Timo Aila. "A style-based generator architecture for generative adversarial networks." <em>Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</em>. 2019.<br />
+          [9] Wei Wu, Hanyang Peng, and Shiqi Yu. YuNet: A Tiny Millisecond-level Face Detector. <em>Machine Intelligence Research</em> 20, 656-665 (2023). <a href="https://doi.org/10.1007/s11633-023-1423-y">https://doi.org/10.1007/s11633-023-1423-y</a>.<br/>
         </div>
       </div>
       <hr style={{margin: 0}} className="border border-2 "/>
