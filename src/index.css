@@ -127,6 +127,16 @@ ol li::marker {
   font-weight: 400;
 }
 
+table {
+  width: 100px;
+  margin-bottom: 0;
+}
+
+table tr {
+  border-left: 2px solid;
+  border-right: 2px solid;
+}
+
 @media (min-width: 1200px) {
   .megaphone {
     width: 3rem;
