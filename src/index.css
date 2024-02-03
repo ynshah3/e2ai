@@ -137,6 +137,19 @@ table tr {
   border-right: 2px solid;
 }
 
+button.btn.btn-secondary {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+input.form-control {
+  width: 70px;
+}
+
+div.col {
+  padding: 0;
+}
+
 @media (min-width: 1200px) {
   .megaphone {
     width: 3rem;

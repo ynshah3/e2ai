@@ -1,4 +1,4 @@
-class Kernel {
+export class Kernel {
   constructor(width, height) {
     this.width = width;
     this.height = height;
