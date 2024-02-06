@@ -106,6 +106,18 @@ ul[role="tablist"] {
   border-color: black;
 }
 
+div.modal-content {
+  height: 90vh;
+}
+
+div.vstack {
+  align-items: center;
+}
+
+.col-blurred {
+  margin-top: 0;
+}
+
 ol, ul {
   max-width: 750px;
   justify-content: center;
@@ -148,6 +160,8 @@ input.form-control {
 
 div.col {
   padding: 0;
+  display: grid;
+  justify-content: center;
 }
 
 @media (min-width: 1200px) {
@@ -162,3 +176,9 @@ div.col {
   }
   
 }
+
+@media (max-width: 767px) {
+  .col-blurred {
+    margin-top: 20px;
+  }
+} 

@@ -1,7 +1,7 @@
 // Taken from https://blog.j2i.net/2017/11/25/kernel-filters-in-htmljavascript/
 
-export async function processImage(refs, kernelFilter) {
-  const inctx = refs.current[0].getContext('2d');
+export async function convolveImage(kernelFilter) {
+  const inctx = document.getElementById("inconv").getContext('2d');
   const pix = inctx.getImageData(0, 0, 200, 200)
   var getPix = async function(x,y) {
     x = Math.max(0, Math.min(x, 200-1));
@@ -25,7 +25,7 @@ export async function processImage(refs, kernelFilter) {
     return retVal;
   }
 
-  const outctx = refs.current[1].getContext('2d');
+  const outctx = document.getElementById("outconv").getContext('2d', {willReadFrequently: true});
   const resultpix = outctx.getImageData(0,0,200,200)
 
   for(var yPos=0;yPos<200;++yPos) {
@@ -41,6 +41,6 @@ export async function processImage(refs, kernelFilter) {
 
   outctx.putImageData(resultpix,0,0);
 
-  document.getElementById("spn").style.display = "none";
-  document.getElementById("trsfm").style.display = "block";
+  document.getElementById("spnconv").style.display = "none";
+  document.getElementById("outconv").style.display = "block";
 }
