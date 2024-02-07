@@ -15,7 +15,7 @@ const CNNModel = () => {
           <br /><br />
           <img src="arch.png" alt="model architecture" className="img-fluid" width="100%" />
           <br /><br />
-          Here, YuNet is an efficient millisecond-level face detector designed specifically for edge devices, with its authors claiming that it has the best accuracy-speed tradeoff [9].<br/><br/>
+          Here, BlazeFace is a lightweight, sub-millisecond face detector designed specifically for mobile inference [9].<br/><br/>
           Go through the following tabs to learn about convolutions, non-linearities, and pooling:<br/>
         </div>
         <Tabs

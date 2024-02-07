@@ -80,6 +80,13 @@ code {
   font-weight: 500;
 }
 
+.random-img-gen {
+  margin-bottom: 20px;
+  border-width: 1.3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 button[id^='dataset-tabs'] {
   color: #751ae3;
   font-weight: 500;
