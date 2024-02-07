@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Spinner } from 'react-bootstrap';
-import { detectFaces } from "../functions/detectFaces";
+import { detectFaces, loadDetector } from "../functions/detectFaces";
 import { classifyImage } from "../functions/classifyImage";
 
 
 const CNNTest = () => {
+  const [detector, setDetector] = useState(undefined);
+  const [classifier, setClassifier] = useState(undefined);
+
+  useEffect(() => {
+    loadDetector().then((detector) => {
+      console.log('detector loaded');
+      setDetector(detector)
+    });
+  }, [])
+
   function common(src) {
-    console.log(src)
     document.getElementById("output-spn").style.display = "none";
     document.getElementById("has-faces").style.display = "none";
     document.getElementById("pred").style.display = "none";
@@ -37,8 +46,8 @@ const CNNTest = () => {
     document.getElementById("has-faces").style.display = "none";
     document.getElementById("pred").style.display = "none";
     let img = document.getElementById('source-img').getContext('2d').getImageData(0, 0, 224, 224);
-    await detectFaces(img);
-    await classifyImage(img);
+    await detectFaces(detector, img);
+    await classifyImage(classifier, img);
   }
 
   return (
