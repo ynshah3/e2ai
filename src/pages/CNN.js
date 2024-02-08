@@ -2,14 +2,36 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import CNNDataset from "./cnnDataset";
 import CNNModel from "./cnnModel";
+import CNNTrain from "./cnnTrain";
 import CNNTest from "./cnnTest";
+import { loadClassifier, loadDataset } from "../functions/trainClassifier";
+import { loadDetector } from "../functions/detectFaces";
 
 
 const CNN = () => {
   const [show, setShow] = useState(false);
+  const [images, setImages] = useState([]);
+  const [targets, setTargets] = useState([]);
+  const [detector, setDetector] = useState(undefined);
+  const [classifier, setClassifier] = useState(undefined);
+  const [head, setHead] = useState(undefined);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+  }, [])
+
+  useEffect(() => {
+    loadClassifier().then((classifier) => {
+      setClassifier(classifier);
+      loadDataset(classifier).then((dataset) => {
+        setImages(dataset[0]);
+        setTargets(dataset[1]);
+      });
+    });
+
+    loadDetector().then((detector) => {
+      setDetector(detector);
+    });
   }, [])
 
   function openSurvey() { setShow(true); }
@@ -35,7 +57,9 @@ const CNN = () => {
         <hr style={{margin: "30px 20px"}} />
         <CNNModel />
         <hr style={{margin: "30px 20px"}} />
-        <CNNTest />
+        <CNNTrain classifier={classifier} images={images} targets={targets} setHead={setHead} />
+        <hr style={{margin: "30px 20px"}} />
+        <CNNTest classifier={classifier} detector={detector} head={head} />
         <hr style={{margin: "30px 20px"}} />
         <div className="container-sm" style={{maxWidth: 750, textAlign: "justify"}}>
           Thanks for completing this module! Please fill out this exit ticket and feedback survey to self-assess learning outcomes and help improve this module!<br/><br />

@@ -36,10 +36,10 @@ const CNNModelRelu = () => {
       <div style={{textAlign: "justify"}}>
         Rectified Linear Unit (ReLU) is a nonlinear activation function that allows neural networks to model nonlinear relationships between variables in the dataset. Rectifiers are also biologically-plausible because they introduce sparsity in activations, similar to sparse neuronal coding observed in the brain [10].<br /><br />
         For any input <tt>x</tt>, <tt>ReLU(x) = max(0, x)</tt><br/><br/>
-        To see this in action, choose a number <tt>N</tt> between 0 and 40000 (larger the better to see a more pronounced effect). This will randomly turn <tt>N</tt> pixels in the below <tt>200 x 200</tt> image negative. Applying the ReLU function on it should then just zero out the negative pixels and keep the positive ones as they are.
+        To see this in action, choose a threshold <tt>T</tt> between 0 and 255. All pixels lesser than <tt>T</tt> will be clipped to equal <tt>T</tt>, effectively preventing the model from learning anything useful from them. This is implemented through the expression: <tt>pixel = ReLU(pixel - T) + T</tt>.
       </div>
       <Form style={{display: "flex", justifyContent: "center"}}>
-        <Form.Control type="number" name="N" value={value} onChange={handleChange} min={0} max={40000} style={{width: 100, margin: 20}} />
+        <Form.Control type="number" name="N" value={value} onChange={handleChange} min={0} max={255} style={{width: 100, margin: 20}} />
         <Button variant="primary" type="submit" onClick={handleSubmit} style={{margin: 20}}>
           ReLU!
         </Button>

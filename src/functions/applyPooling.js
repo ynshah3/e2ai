@@ -1,6 +1,30 @@
+export function checkedImage() {
+  const inctx = document.getElementById("inpool").getContext('2d', {willReadFrequently: true});
+  const pix = inctx.getImageData(0, 0, 200, 200);
+
+  let flag = 0;
+  for (var i = 0; i < 160000; i += 4) {
+    pix.data[i] = flag;
+    pix.data[i+1] = flag;
+    pix.data[i+2] = flag;
+    pix.data[i+3] = 255;
+
+    if (i % 800 === 0) {
+      if (flag === 0) flag = 0;
+      else flag = 255;
+    } else {
+      if (flag === 0) flag = 255;
+      else flag = 0;
+    } 
+  }
+
+  inctx.putImageData(pix,0,0);
+}
+
+
 export async function poolImage(func) {
   const inctx = document.getElementById("inpool").getContext('2d');
-  const pix = inctx.getImageData(0, 0, 200, 200)
+  const pix = inctx.getImageData(0, 0, 200, 200);
 
   var getFilteredPix = async function(func, a, b, c, d) {
     if (func === "max") {
@@ -29,8 +53,6 @@ export async function poolImage(func) {
       resultpix.data[newAddress+3]=255;
     }
   }
-
-  console.log(resultpix)
 
   outctx.putImageData(resultpix,0,0);
 

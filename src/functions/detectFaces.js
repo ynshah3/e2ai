@@ -1,4 +1,3 @@
-import '@tensorflow/tfjs-backend-webgl';
 import * as faceDetection from '@tensorflow-models/face-detection';
 
 

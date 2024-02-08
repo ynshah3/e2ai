@@ -1,29 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Spinner, ButtonGroup } from 'react-bootstrap';
-import { poolImage } from "../functions/applyPooling";
+import { checkedImage, poolImage } from "../functions/applyPooling";
 
 
 const CNNModelPooling = () => {
-  const [method, setMethod] = useState(undefined)
-
-  const draw = async (context) => {
-    const image = new Image();
-    image.src = "test.jpg";
-    image.onload = () => {
-      context.drawImage(image, 0, 0);
-    };
-  };
-
   useEffect(() => {
-    const context = document.getElementById("inpool").getContext('2d', {willReadFrequently: true});
-    draw(context);
+    checkedImage();
   }, [])
 
   const handleClick = (e) => {
-    setMethod(e);
     document.getElementById("spnpool").style.display = "inline-block";
     document.getElementById("outpool").style.display = "none";
-    setTimeout(() => poolImage(method), 1000);
+    setTimeout(() => poolImage(e), 1000);
   }
 
 
@@ -31,7 +19,7 @@ const CNNModelPooling = () => {
     <div>
       <div style={{textAlign: "justify", marginBottom: 20}}>
         Pooling is a way in which information from an input is gradually aggregated so that convolutional layers downstream can learn a more global representation. It is equivalent to spatially downsampling the input, and can be thought of as allowing the model to learn low-level features such as edges in the earlier layers, and more high-level features like eyes, faces, hands, etc. in the later layers [1].<br /><br />
-        Max pooling, Min Pooling, and Average Pooling compute the <tt>maximum</tt>, <tt>minimum</tt>, and <tt>average</tt> over some pre-defined window as a way of aggregation. See how these work below! (Windows are <tt>2 x 2</tt> in size). While the differences are subtle, pay attention to the eyes and to the ends of the dog's ears...
+        Max pooling, Min Pooling, and Average Pooling compute the <tt>maximum</tt>, <tt>minimum</tt>, and <tt>average</tt> over some pre-defined window as a way of aggregation. See how these work below! (Windows are <tt>2 x 2</tt> in size). The image below is checkered; it has an alternating black (0) and white (255) pixel pattern. Why do the following results make sense? Hint: Think about what value you get after applying each of the below pooling operations to the window [[255, 0], [0, 255]].
       </div>
       <ButtonGroup>
         <Button variant="secondary" onClick={() => handleClick("max")}>Max Pooling</Button>

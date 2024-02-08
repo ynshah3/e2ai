@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
-import { detectFaces, loadDetector } from "../functions/detectFaces";
+import { detectFaces } from "../functions/detectFaces";
 import { classifyImage } from "../functions/classifyImage";
 
 
-const CNNTest = () => {
-  const [detector, setDetector] = useState(undefined);
-  const [classifier, setClassifier] = useState(undefined);
-
+const CNNTest = ({classifier, detector, head}) => {
   useEffect(() => {
-    loadDetector().then((detector) => {
-      console.log('detector loaded');
-      setDetector(detector)
-    });
+    document.getElementById("random").disabled = true;
+    document.getElementById("user").disabled = true;
   }, [])
 
   function common(src) {
@@ -29,25 +24,26 @@ const CNNTest = () => {
     }
     document.getElementById("source-spn").style.display = "none";
     document.getElementById("source-img").style.display = "inline-block";
+    document.getElementById("output-spn").style.display = "inline-block";
+    document.getElementById("has-faces").style.display = "none";
+    document.getElementById("pred").style.display = "none";
     setTimeout(() => detectAndClassify(), 1000)
   }
 
+  async function detectAndClassify() {
+    let img = document.getElementById('source-img').getContext('2d').getImageData(0, 0, 224, 224);
+    await detectFaces(detector, img);
+    await classifyImage(classifier, img);
+  }
+
   function handleClick(e) {
+    console.log('clicked')
     e.preventDefault();
     common('random/' + Math.floor(Math.random() * 10).toString() + '.jpeg');
   }
 
   function handleChange(e) {
     common(URL.createObjectURL(e.target.files[0]));
-  }
-
-  async function detectAndClassify() {
-    document.getElementById("output-spn").style.display = "inline-block";
-    document.getElementById("has-faces").style.display = "none";
-    document.getElementById("pred").style.display = "none";
-    let img = document.getElementById('source-img').getContext('2d').getImageData(0, 0, 224, 224);
-    await detectFaces(detector, img);
-    await classifyImage(classifier, img);
   }
 
   return (
