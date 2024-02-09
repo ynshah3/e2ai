@@ -28,9 +28,9 @@ LineFilter.weightArray[2] = [0, 1, 2];
 
 
 export var DiagonalFilter = new Kernel(3, 3);
-DiagonalFilter.weightArray[0] = [8, 0, -4];
-DiagonalFilter.weightArray[1] = [0, 8, 0];
-DiagonalFilter.weightArray[2] = [-4, 0, 8];
+DiagonalFilter.weightArray[0] = [8, -4, -4];
+DiagonalFilter.weightArray[1] = [-4, 8, -4];
+DiagonalFilter.weightArray[2] = [-4, -4, 8];
 
 
 export var CircularFilter = new Kernel(3, 3);

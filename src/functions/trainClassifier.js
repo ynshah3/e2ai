@@ -38,8 +38,6 @@ export async function loadClassifier() {
     mobilenet.predict(tf.zeros([1, 224, 224, 3]));
   });
 
-  console.log(mobilenet.getLayers())
-
   return mobilenet;
 }
 
@@ -50,7 +48,7 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
   logDiv.style.display = "block";
 
   let head = tf.sequential();
-  head.add(tf.layers.dense({inputShape: [1024], units: 32, activation: 'relu'}));
+  head.add(tf.layers.dense({inputShape: [1024], units: 16, activation: 'relu'}));
   head.add(tf.layers.dense({units: 5, activation: 'softmax'}));
 
   head.compile({
@@ -103,9 +101,6 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
   inputsAsTensor.dispose();
   
   // await head.save('localstorage://model_head')
-  
-  document.getElementById("random").disabled = false;
-  document.getElementById("user").disabled = false;
 
   return head;
 }

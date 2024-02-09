@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Form, Row, Col, Button } from 'react-bootstrap';
-import { train } from "../functions/trainClassifier";
+import { Form, Row, Col, Button, Spinner } from 'react-bootstrap';
+import { loadDataset, train, loadClassifier } from "../functions/trainClassifier";
 
 
-const CNNTrain = ({classifier, images, targets, setHead}) => {
-  const [batchSize, setBatchSize] = useState(32);
-  const [epochs, setEpochs] = useState(10);
+const CNNTrain = ({setClassifier, setHead}) => {
+  const [images, setImages] = useState(undefined)
+  const [targets, setTargets] = useState(undefined)
+  const [batchSize, setBatchSize] = useState(128);
+  const [epochs, setEpochs] = useState(20);
   const [lr, setLr] = useState(0.0001);
 
   useEffect(() => {
-    if (classifier && images && targets) {
+    if (images && targets) {
+      document.getElementById("loaddmspn").style.display = "none";
       document.getElementById("train").disabled = false;
       document.getElementById("select-lr").disabled = false;
       document.getElementById("select-bz").disabled = false;
@@ -20,7 +23,19 @@ const CNNTrain = ({classifier, images, targets, setHead}) => {
       document.getElementById("select-bz").disabled = true;
       document.getElementById("select-epochs").disabled = true;
     }
-  }, [classifier, images, targets])
+  }, [images, targets])
+
+  async function handleLoad() {
+    document.getElementById("loaddmspn").style.display = "inline";
+    loadClassifier().then((classifier) => {
+      setClassifier(classifier);
+      loadDataset(classifier).then((dataset) => {
+        setImages(dataset[0]);
+        setTargets(dataset[1]);
+      });
+    });
+    document.getElementById("loaddm").disabled = true;
+  }
 
   async function handleClick(e) {
     e.preventDefault();
@@ -35,19 +50,27 @@ const CNNTrain = ({classifier, images, targets, setHead}) => {
       <h2 className="display-6">Training the Model</h2>
       <div className="container-sm" style={{marginTop: 50, maxWidth: 800}}>
         <div style={{textAlign: "justify"}}>
-          Now that we have looked over the dataset and understood how different layers in the model work, let's finally train a classifier on it! We will be working with three hyperparameters, i.e., variables that we will try to find the best values for so that the classifier performs best on unseen images according to some metric: <span className="emph">learning rate</span>, <span className="emph">batch size</span>, and <span className="emph">number of epochs</span>. Since our dataset comprises of a total of 500 images, we will randomly choose 400 of them for training and the rest for validating classifier performance.
+          Now that we have looked over the dataset and understood how different layers in the model work, let's finally train a classifier on it! We will be working with three hyperparameters, i.e., variables that we will try to find the best values for so that the classifier performs best on unseen images according to some metric: <span className="emph">learning rate</span> of the optimizer, <span className="emph">batch size</span> for inputs, and <span className="emph">number of epochs</span> (complete passes over the dataset while training). Since our dataset comprises of a total of 500 images, we will randomly choose 400 of them for training and the rest for validating classifier performance (unseen during training).
           <br /><br />
-          Three metrics that we will look at are:
+          Metrics that we will look at are:
           <div>
-            [1] <span className="emph">Accuracy</span>: Fraction of validation images the classifier got correct.<br/>
-            [2] <span className="emph">Precision</span>: Out of all validation images the classifier deemed as belonging to a certain class, the fraction of images that indeed belong to that class.<br/>
-            [3] <span className="emph">Recall</span>: Out of all validation images belonging to a certain class, the fraction of images the classifier deemed as belonging to that class.<br/>
+            [1] <span className="emph">Loss</span>: Measure of the "cost" associated with trying to bring classifier predictions closer to actual image labels. Loss values should go down while training!<br/>
+            [2] <span className="emph">Accuracy</span>: Fraction of images the classifier gets correct. Accuracy should go up while training!<br/>
+            [3] <span className="emph">Confusion Matrix</span>: A square matrix that quantifies how "confused" the model gets on various classes. For example, the "face" row tells us about the number of images the model predicts as belonging to classes listed as columns when they were, in actuality, images of "faces". Think about why having large numbers along the diagonal make sense!<br/>
           </div>
           <br/>
+          When analyzing model performance, keep in mind that you should be focusing more on the validation set loss and accuracy since these inputs were unseen by the model during training, revealing if the model has generalization capabilities. The closer the validation loss and accuracy curves are to their training set counterparts, the better the model performs (it hasn't overfit or underfit)!
+          <br /><br/>
+          To open or close the visualization pane, press <tt>~</tt>.
+          <br/><br/>
         </div>
         <div>
-          <Form>
+          <Form style={{textAlign: "left"}}>
             <Row>
+              <Col xs lg="4"><Button id="loaddm" onClick={handleLoad}>Load Dataset and MobileNet</Button></Col>
+              <Col xs lg="2" style={{justifyContent: "left"}}><Spinner id="loaddmspn" style={{display: "none"}} /></Col>
+            </Row>
+            <Row style={{marginTop: 15}}>
               <Col xs lg="2">
                 <Form.Group controlId="select-lr">
                   <Form.Label>Learning Rate</Form.Label>
@@ -82,8 +105,8 @@ const CNNTrain = ({classifier, images, targets, setHead}) => {
                   </Form.Select>
                 </Form.Group>
               </Col>
-              <Col xs lg="2">
-                <Button id="train" onClick={handleClick}>Train!</Button>
+              <Col xs lg="3" style={{alignItems: "flex-end"}}>
+                <Button id="train" onClick={handleClick}>Train Classifier Head!</Button>
               </Col>
             </Row>
           </Form>

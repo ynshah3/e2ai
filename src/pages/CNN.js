@@ -4,34 +4,15 @@ import CNNDataset from "./cnnDataset";
 import CNNModel from "./cnnModel";
 import CNNTrain from "./cnnTrain";
 import CNNTest from "./cnnTest";
-import { loadClassifier, loadDataset } from "../functions/trainClassifier";
-import { loadDetector } from "../functions/detectFaces";
 
 
 const CNN = () => {
   const [show, setShow] = useState(false);
-  const [images, setImages] = useState([]);
-  const [targets, setTargets] = useState([]);
-  const [detector, setDetector] = useState(undefined);
   const [classifier, setClassifier] = useState(undefined);
   const [head, setHead] = useState(undefined);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
-
-  useEffect(() => {
-    loadClassifier().then((classifier) => {
-      setClassifier(classifier);
-      loadDataset(classifier).then((dataset) => {
-        setImages(dataset[0]);
-        setTargets(dataset[1]);
-      });
-    });
-
-    loadDetector().then((detector) => {
-      setDetector(detector);
-    });
   }, [])
 
   function openSurvey() { setShow(true); }
@@ -57,9 +38,9 @@ const CNN = () => {
         <hr style={{margin: "30px 20px"}} />
         <CNNModel />
         <hr style={{margin: "30px 20px"}} />
-        <CNNTrain classifier={classifier} images={images} targets={targets} setHead={setHead} />
+        <CNNTrain setClassifier={setClassifier} setHead={setHead} />
         <hr style={{margin: "30px 20px"}} />
-        <CNNTest classifier={classifier} detector={detector} head={head} />
+        <CNNTest classifier={classifier} head={head} />
         <hr style={{margin: "30px 20px"}} />
         <div className="container-sm" style={{maxWidth: 750, textAlign: "justify"}}>
           Thanks for completing this module! Please fill out this exit ticket and feedback survey to self-assess learning outcomes and help improve this module!<br/><br />
@@ -82,6 +63,7 @@ const CNN = () => {
           [8] Tero Karras, Samuli Laine, and Timo Aila. "A style-based generator architecture for generative adversarial networks." <em>Proceedings of the IEEE/CVF conference on computer vision and pattern recognition</em>. 2019.<br />
           [9] Valentin Bazarevsky, Yury Kartynnik, Andrey Vakunov, Karthik Raveendran, and Matthias Grundmann. "Blazeface: Sub-millisecond neural face detection on mobile gpus." arXiv preprint arXiv:1907.05047 (2019).<br/>
           [10] Xavier Glorot, Antonie Bordes, and Yoshua Bengio. Deep Sparse Rectifier Neural Networks. <i>Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics</i>, in <i>Proceedings of Machine Learning Research</i> 15:315-323 (2011). <a href="https://proceedings.mlr.press/v15/glorot11a.html">https://proceedings.mlr.press/v15/glorot11a.html</a>.<br/>
+          [11] Andrew Howard, Mark Sandler, Grace Chu, Liang-Chieh Chen, Bo Chen, Mingxing Tan, Weijun Wang et al. "Searching for mobilenetv3." In Proceedings of the IEEE/CVF international conference on computer vision, pp. 1314-1324. 2019.
         </div>
       </div>
       <hr style={{margin: 0}} className="border border-2 "/>

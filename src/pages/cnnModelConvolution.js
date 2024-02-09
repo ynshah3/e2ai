@@ -89,7 +89,7 @@ const CNNModelConvolution = () => {
         <canvas id="outconv" height={200} width={200} style={{display: "none", margin: "0 20px 30px 20px"}} />
         <Spinner id="spnconv" style={{display: "none"}} />
         <div style={{textAlign: "justify", marginBottom: 20}}>
-          Now here's a challenge... the first filter above represents a <em>vertical</em> edge detector (which can be verified from the vertical lines extracted from the image). Try to design a horizontal edge detector and check if the convolved image (shown above) match your expectations!
+          Now here's a challenge... the first filter above represents a <em>vertical</em> edge detector (which can be verified from the vertical lines extracted from the image). Try to design a horizontal edge detector and check if the convolved image (shown above) matches your expectations!
         </div>
         <Form>
           <Row>
