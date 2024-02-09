@@ -67,7 +67,7 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
     console.log(err);
   }
 
-  logDiv.innerHTML += "<br>\nVisualizing... Done";
+  logDiv.innerHTML += " Done<br>\nVisualizing...";
 
   const trainLoss = results.history.loss.map((y, x) => ({ x, y, }));
   const trainAcc = results.history.acc.map((y, x) => ({ x, y, }));
