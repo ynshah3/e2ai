@@ -45,7 +45,6 @@ export async function loadClassifier() {
 export async function train(images, targets, batchSize=32, epochs=15, learningRate=0.001) {
   let logDiv = document.getElementById("train-logs");
   logDiv.innerHTML = "Training...";
-  logDiv.style.display = "block";
 
   let head = tf.sequential();
   head.add(tf.layers.dense({inputShape: [1024], units: 16, activation: 'relu'}));
@@ -53,8 +52,8 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
 
   head.compile({
     optimizer: tf.train.adam(parseFloat(learningRate)),
-    loss: tf.metrics.categoricalCrossentropy, 
-    metrics: [tf.metrics.categoricalAccuracy]  
+    loss: 'categoricalCrossentropy', 
+    metrics: ['accuracy']  
   });
   
   tf.util.shuffleCombo(images, targets);
@@ -68,12 +67,12 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
     console.log(err);
   }
 
-  logDiv.innerHTML += "<br>\nVisualizing...";
+  logDiv.innerHTML += "<br>\nVisualizing... Done";
 
   const trainLoss = results.history.loss.map((y, x) => ({ x, y, }));
-  const trainAcc = results.history.categoricalAccuracy.map((y, x) => ({ x, y, }));
+  const trainAcc = results.history.acc.map((y, x) => ({ x, y, }));
   const valLoss = results.history.val_loss.map((y, x) => ({ x, y, }));
-  const valAcc = results.history.val_categoricalAccuracy.map((y, x) => ({ x, y, }));
+  const valAcc = results.history.val_acc.map((y, x) => ({ x, y, }));
 
   const labels = ['training', 'validation'];
   const losses = { values: [trainLoss, valLoss], series: labels }
@@ -96,6 +95,7 @@ export async function train(images, targets, batchSize=32, epochs=15, learningRa
   if (!tfvis.visor().isOpen()) {
     tfvis.visor().open();
   }
+  logDiv.innerHTML += " Done";
   outputsAsTensor.dispose();
   oneHotOutputs.dispose();
   inputsAsTensor.dispose();

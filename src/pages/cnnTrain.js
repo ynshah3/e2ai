@@ -11,19 +11,11 @@ const CNNTrain = ({setClassifier, setHead}) => {
   const [lr, setLr] = useState(0.0001);
 
   useEffect(() => {
-    if (images && targets) {
-      document.getElementById("loaddmspn").style.display = "none";
-      document.getElementById("train").disabled = false;
-      document.getElementById("select-lr").disabled = false;
-      document.getElementById("select-bz").disabled = false;
-      document.getElementById("select-epochs").disabled = false;
-    } else {
-      document.getElementById("train").disabled = true;
-      document.getElementById("select-lr").disabled = true;
-      document.getElementById("select-bz").disabled = true;
-      document.getElementById("select-epochs").disabled = true;
-    }
-  }, [images, targets])
+    document.getElementById("train").disabled = true;
+    document.getElementById("select-lr").disabled = true;
+    document.getElementById("select-bz").disabled = true;
+    document.getElementById("select-epochs").disabled = true;
+  }, [])
 
   async function handleLoad() {
     document.getElementById("loaddmspn").style.display = "inline";
@@ -32,6 +24,11 @@ const CNNTrain = ({setClassifier, setHead}) => {
       loadDataset(classifier).then((dataset) => {
         setImages(dataset[0]);
         setTargets(dataset[1]);
+        document.getElementById("loaddmspn").style.display = "none";
+        document.getElementById("train").disabled = false;
+        document.getElementById("select-lr").disabled = false;
+        document.getElementById("select-bz").disabled = false;
+        document.getElementById("select-epochs").disabled = false;
       });
     });
     document.getElementById("loaddm").disabled = true;
@@ -61,7 +58,7 @@ const CNNTrain = ({setClassifier, setHead}) => {
           <br/>
           When analyzing model performance, keep in mind that you should be focusing more on the validation set loss and accuracy since these inputs were unseen by the model during training, revealing if the model has generalization capabilities. The closer the validation loss and accuracy curves are to their training set counterparts, the better the model performs (it hasn't overfit or underfit)!
           <br /><br/>
-          To open or close the visualization pane, press <tt>~</tt>.
+          To open or close the visualization pane, press <tt>~</tt>. It might take a moment before you see anything happen after clicking on the "Train" button.
           <br/><br/>
         </div>
         <div>
@@ -111,7 +108,7 @@ const CNNTrain = ({setClassifier, setHead}) => {
             </Row>
           </Form>
         </div>
-        <div id="train-logs" style={{marginTop: 30, textAlign: "left", color: "#226c1f", display: "none", fontWeight: 500}}>
+        <div id="train-logs" style={{marginTop: 30, textAlign: "left", color: "#226c1f", fontWeight: 500}}>
         </div>
       </div>
     </div>

@@ -87,6 +87,16 @@ code {
   cursor: pointer;
 }
 
+button:disabled,
+button[disabled] {
+  cursor: not-allowed;
+}
+
+select:disabled,
+select[disabled] {
+  cursor: not-allowed;
+}
+
 button[id^='dataset-tabs'] {
   color: #751ae3;
   font-weight: 500;
