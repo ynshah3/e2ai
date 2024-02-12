@@ -75,7 +75,7 @@ const CNNTest = ({classifier}) => {
       <h2 className="display-6">How Does The Model Perform?</h2>
       <div className="container-sm" style={{marginTop: 50, maxWidth: 800}}>
         <div style={{textAlign: "justify"}}>
-          Now that we've learned how the model works "under-the-hood" and what dataset it was trained on, let's see how it performs on unseen samples. Over-reliance on model predictions can do more harm than good, especially because these models are not always right! Sometimes, models can be extremely wrong with very high confidence. AI systems should keep humans in the loop, since humans are ultimately responsible and accountable for the tasks [5].
+          Now that we've learned how the model works "under-the-hood" and what dataset it was trained on, let's see how it performs on unseen samples. Over-reliance on model predictions can do more harm than good, especially because these models are not always right! Sometimes, models can be extremely wrong with very high confidence. AI systems should keep humans in the loop, since humans are ultimately <a href="https://www.unesco.org/en/artificial-intelligence">responsible and accountable</a> for the tasks.
           <br /><br />
           How does the model do on an unseen image? The pipeline that we will be following is:<br />
           <div className="emph">
@@ -108,7 +108,7 @@ const CNNTest = ({classifier}) => {
             Fish: <span id="fish"></span><br />
             Parachute: <span id="parachute"></span>
           </div>
-          <div id="ps" style={{textAlign: "justify", marginTop: 20, display: "none"}}>Two of the many reasons why a model might incorrectly classify a test image, given that it performs decently well on the training and validation sets, are: (1) the image is out-of-distribution (image styles not present in the dataset; for example, a face at a different angle, a different dog breed, etc.), or (2) the image is out-of-domain (images from classes the model might not have seen during training). Always have humans in the loop!</div>
+          <div id="ps" style={{textAlign: "justify", marginTop: 20, display: "none"}}>Two of the many reasons why a model might incorrectly classify a test image, given that it performs decently well on the training and validation sets, are: (1) the image is <a href="https://arxiv.org/pdf/2108.13624.pdf">out-of-distribution</a> (image styles not present in the dataset; for example, a face at a different angle, a different dog breed, etc.), or (2) the image is <a href="https://arxiv.org/pdf/2103.03097.pdf">out-of-domain</a> (images from classes the model might not have seen during training). Always have humans in the loop!</div>
         </div>
       </div>
     </div>

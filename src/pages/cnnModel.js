@@ -12,7 +12,7 @@ const CNNModel = () => {
       <div className="container-sm" style={{marginTop: 50, maxWidth: 800}}>
         <div style={{textAlign: "justify"}}>
           AI Literacy necessitates understanding of how models work "under-the-hood" so we can critically examine and address areas of issues and needs for improvement, and question the model's interaction with people, society, and the environment.<br/><br/>
-          Go through the following tabs to learn about convolutions, non-linearities, and pooling that are used by these models:<br/>
+          Go through the following tabs to learn about convolutions, non-linearities, and pooling that are used by CNNs:<br/>
         </div>
         <Tabs
           defaultActiveKey="convolution"

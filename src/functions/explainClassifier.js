@@ -59,7 +59,7 @@ export async function clfParams(clf) {
   tfvis.visor().setActiveTab('Model Inspection');
 }
 
-function getActivation(input, model, layer) {
+export function getActivation(input, model, layer) {
   const activationModel = tf.model({
     inputs: model.input,
     outputs: layer.output
@@ -192,9 +192,10 @@ export async function denseActivationTable(clf, examples, layerName) {
     surface.drawArea.appendChild(container);
     const imageSurface = container.querySelector('.image');
     const chartSurface = container.querySelector('.chart');
+    const labels = ['church', 'dog', 'face', 'fish', 'parachute']
     const barchartData = Array.from(activation.dataSync()).map((d, i) => {
       return {
-        index: i,
+        index: labels[i],
         value: d
       };
     });
@@ -204,8 +205,7 @@ export async function denseActivationTable(clf, examples, layerName) {
     });
     tfvis.render.barchart(chartSurface, barchartData, {
       width: 375,
-      height: 60,
-      xLabel: ['church', 'dog', 'face', 'fish', 'parachute']
+      height: 120
     });
   }
 

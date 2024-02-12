@@ -88,6 +88,11 @@ code {
   width: 200px;
 }
 
+div:has(> span.image) {
+  display: flex;
+  align-items: center;
+}
+
 button:disabled,
 button[disabled] {
   cursor: not-allowed;

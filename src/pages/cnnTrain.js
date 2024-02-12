@@ -88,8 +88,9 @@ const CNNTrain = ({setClassifier, setDataset}) => {
               <option value={3}>3</option>
               <option value={5}>5</option>
               <option value={10}>10</option>
-              <option value={15}>15</option>
               <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={50}>50</option>
             </select>
             <br/>
           </Form>
@@ -101,7 +102,7 @@ const CNNTrain = ({setClassifier, setDataset}) => {
             [2] <span className="emph">Accuracy</span>: Fraction of images the classifier gets correct. Accuracy should go up while training!<br/>
           </div>
           <br/>
-          When analyzing model performance, pay attention to how the validation set loss and accuracy curves behave. Do they behave similarly as the training set curves? Is there a prominent gap between the two? The closer the validation loss and accuracy curves are to their training set counterparts, the better the model performs&#8212;it hasn't <a href="https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html">overfit</a> (started to memorized training data) or <a href="https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html">underfit</a> (too simple to learn training data features)!
+          When analyzing model performance, pay attention to how the validation set loss and accuracy curves behave. Do they behave similarly as the training set curves? Is there a prominent gap between the two? The closer the validation loss and accuracy curves are to their training set counterparts, the better the model performs&#8212;it hasn't <a href="https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html">overfit</a> (started to memorize training data) or <a href="https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html">underfit</a> (too simple to learn training data features)!
           <br /><br/>
           To open or close the visualization pane, press <tt>~</tt>. It might take a moment before you see anything happen after clicking on the "Train" button.
           <br/>
