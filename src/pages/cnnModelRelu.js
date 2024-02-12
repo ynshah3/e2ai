@@ -34,7 +34,7 @@ const CNNModelRelu = () => {
   return (
     <div>
       <div style={{textAlign: "justify"}}>
-        Rectified Linear Unit (ReLU) is a nonlinear activation function that allows neural networks to model nonlinear relationships between variables in the dataset. Rectifiers are also biologically-plausible because they introduce sparsity in activations, similar to sparse neuronal coding observed in the brain [10].<br /><br />
+        Rectified Linear Unit (ReLU) is a nonlinear activation function that allows neural networks to model nonlinear relationships between variables in the dataset. Rectifiers are also biologically-plausible because they introduce sparsity in activations, similar to <a href="https://proceedings.mlr.press/v15/glorot11a.html">sparse neuronal coding</a> observed in the brain.<br /><br />
         For any input <tt>x</tt>, <tt>ReLU(x) = max(0, x)</tt><br/><br/>
         To see this in action, choose a threshold <tt>T</tt> between 0 and 255. All pixels lesser than <tt>T</tt> will be clipped to equal <tt>T</tt>, effectively preventing the model from learning anything useful from them. This is implemented through the expression: <tt>pixel = ReLU(pixel - T) + T</tt>.
       </div>

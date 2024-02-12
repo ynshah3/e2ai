@@ -5,7 +5,7 @@ import { classifyImage } from "../functions/classifyImage";
 import { loadDetector } from "../functions/detectFaces";
 
 
-const CNNTest = ({classifier, head}) => {
+const CNNTest = ({classifier}) => {
   const [detector, setDetector] = useState(undefined);
 
   useEffect(() => {
@@ -19,12 +19,12 @@ const CNNTest = ({classifier, head}) => {
   }, [detector])
 
   useEffect(() => {
-    if (classifier && head) {
+    if (classifier) {
       document.getElementById("loadfd").disabled = false;
     } else {
       document.getElementById("loadfd").disabled = true;
     }
-  }, [classifier, head])
+  }, [classifier])
 
   function common(src) {
     document.getElementById("output-spn").style.display = "none";
@@ -58,7 +58,7 @@ const CNNTest = ({classifier, head}) => {
   async function detectAndClassify() {
     let img = document.getElementById('source-img').getContext('2d').getImageData(0, 0, 224, 224);
     await detectFaces(detector, img);
-    await classifyImage(classifier, head, img);
+    await classifyImage(classifier, img);
   }
 
   async function handleClick(e) {
@@ -80,7 +80,7 @@ const CNNTest = ({classifier, head}) => {
           How does the model do on an unseen image? The pipeline that we will be following is:<br />
           <div className="emph">
             [1] Get an input image<br/>
-            [2] Detect faces in the image<br/>
+            [2] Detect faces in the image using <a href="https://arxiv.org/pdf/1907.05047.pdf">BlazeFace</a><br/>
             [3] Pass image through the model to get predictions!</div>
           <br/>
         </div>

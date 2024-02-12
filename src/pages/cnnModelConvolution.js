@@ -76,7 +76,7 @@ const CNNModelConvolution = () => {
   return (
     <div>
       <div style={{textAlign: "justify", marginBottom: 20}}>
-        A convolution between an image and a filter is defined as the sliding of the filter over the image from left to right and top to bottom, with elementwise multiplication of the part of the image contained in the convolution window with the filter and summing up the resulting values to give a single scalar value [1].<br /><br />
+        A <a href="https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html">convolution</a> between an image and a filter is defined as the sliding of the filter over the image from left to right and top to bottom, with elementwise multiplication of the part of the image contained in the convolution window with the filter and summing up the resulting values to give a single scalar value.<br /><br />
         Click on the below <tt>3 x 3</tt> filters to see what happens when they are convolved over the image:
       </div>
       <Button variant="secondary" onClick={() => handleClick("filter1")}>{Matrix(VerticalFilter, "filter1")}</Button>
