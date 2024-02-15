@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Image } from "react-bootstrap";
 import { clfParams, confMatrix, conv2d1ActivationTable, denseActivationTable, getExamples } from "../functions/explainClassifier";
 
 
@@ -55,7 +56,8 @@ const CNNExplain = ({classifier, dataset}) => {
         </div>
         <h4 className="display-8">Model Activations</h4>
         <div style={{textAlign: "justify"}}>
-          Similar to how neurons in the brain get excited/activated by certain stimuli, units in the convolutional layers of our model also get activated by different parts of an image, capturing various information from them. We can visualize the activations of the units in these different convolutional layers and try to make sense of what the model might be doing "behind-the-scene".<br/><br/>
+          Similar to how neurons in the brain get excited/activated by certain stimuli, units in the convolutional layers of our model also get activated by different parts of an image, capturing various information from them. We can visualize the activations of the units in these different convolutional layers and try to make sense of what the model might be doing "behind-the-scene".<br/><br/> As a reference, below visualized are the filters and activations of the first convolutional layer of AlexNet that has been trained on the entire 1000 classes of ImageNet for hundreds of epochs. How do the filters and activations differ from the filters we saw when we learned about convolutions above?<br/><br/>
+          <Image src='activations.png' className='img-fluid' alt='activations and filters' /><br/><br/>
           <button id="conv1-act" className="random-img-gen" onClick={() => conv2d1ActivationTable(classifier, examples, layers[0])} style={{display: "none", marginBottom: 5}}>Convolutional Layer #1</button>
           <button id="conv2-act" className="random-img-gen" onClick={() => conv2d1ActivationTable(classifier, examples, layers[1])} style={{display: "none", marginBottom: 5}}>Convolutional Layer #2</button>
           <button id="conv3-act" className="random-img-gen" onClick={() => conv2d1ActivationTable(classifier, examples, layers[2])} style={{display: "none", marginBottom: 5}}>Convolutional Layer #3</button>
